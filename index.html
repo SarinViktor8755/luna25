@@ -66,10 +66,22 @@
             font-size: 1.2em;
             line-height: 1.6;
         }
-        canvas {
+        /* Стили для линейной диаграммы */
+        #progressBarContainer {
+            width: 100%;
+            max-width: 400px;
+            height: 30px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
             margin-top: 20px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%; /* Круглая форма */
+        }
+        #progressBar {
+            height: 100%;
+            background-color: #ffffff;
+            width: 0%;
+            border-radius: 15px;
+            transition: width 0.5s ease-in-out; /* Плавная анимация */
         }
         .photo-frame {
             margin-bottom: 20px;
@@ -122,9 +134,6 @@
     </style>
 </head>
 <body>
-
-
-
     <!-- Основной контент -->
     <div class="container">
         <h1>🎉<span>Валерия</span>🎉</h1>
@@ -140,10 +149,11 @@
             <p id="eighteenYears"></p>
             <p id="schoolTime"></p>
         </div>
-
-        <canvas id="progressChart" width="300" height="300"></canvas>
+        <!-- Линейная диаграмма прогресса -->
+        <div id="progressBarContainer">
+            <div id="progressBar"></div>
+        </div>
     </div>
-
     <script>
         // Эффект салюта
         document.addEventListener('mousemove', (event) => {
@@ -152,7 +162,6 @@
             sparkle.style.left = `${event.pageX}px`;
             sparkle.style.top = `${event.pageY}px`;
             document.body.appendChild(sparkle);
-
             // Удаляем элемент после завершения анимации
             sparkle.addEventListener('animationend', () => {
                 sparkle.remove();
@@ -161,6 +170,7 @@
 
         // Дата рождения ребенка
         const birthDate = new Date('2025-03-14T10:15:00');
+
         // Функция для расчета возраста
         function calculateAge(birthDate) {
             const now = new Date();
@@ -188,6 +198,7 @@
             }
             return { years, months, days, hours, minutes, seconds };
         }
+
         // Функция для расчета дней до следующего дня рождения
         function daysUntilNextBirthday(birthDate) {
             const now = new Date();
@@ -199,6 +210,7 @@
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             return diffDays;
         }
+
         // Функция для расчета дней до определенного возраста
         function daysUntilAge(birthDate, targetAge) {
             const targetDate = new Date(birthDate);
@@ -208,6 +220,7 @@
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             return diffDays;
         }
+
         // Функция для расчета времени до школы
         function daysUntilSchool(birthDate) {
             const schoolStartDate = new Date(birthDate.getFullYear() + 7, 8, 1); // 1 сентября, когда ей исполнится 7 лет
@@ -219,45 +232,13 @@
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             return diffDays;
         }
-        // Функция для рисования круговой диаграммы с обозначением месяцев
-        function drawPieChart(progress) {
-            const canvas = document.getElementById('progressChart');
-            const ctx = canvas.getContext('2d');
-            const width = canvas.width;
-            const height = canvas.height;
-            const radius = Math.min(width, height) / 2 - 20; // Уменьшаем радиус для текста
-            // Очистка canvas
-            ctx.clearRect(0, 0, width, height);
-            // Рисуем фон
-            ctx.beginPath();
-            ctx.arc(width / 2, height / 2, radius, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
-            ctx.fill();
-            // Рисуем прогресс
-            ctx.beginPath();
-            ctx.moveTo(width / 2, height / 2);
-            ctx.arc(width / 2, height / 2, radius, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * progress);
-            ctx.fillStyle = '#ffffff';
-            ctx.fill();
-            // Добавляем обозначение месяцев
-            const monthNames = [
-                'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август',
-                'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь', 'Январь', 'Февраль'
-            ];
-            const centerX = width / 2;
-            const centerY = height / 2;
-            const textRadius = radius - 20; // Радиус для текста
-            ctx.fillStyle = 'white';
-            ctx.font = '12px Arial';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            for (let i = 0; i < monthNames.length; i++) {
-                const angle = (i * (Math.PI * 2) / monthNames.length) - Math.PI / 2;
-                const x = centerX + Math.cos(angle) * textRadius;
-                const y = centerY + Math.sin(angle) * textRadius;
-                ctx.fillText(monthNames[i], x, y);
-            }
+
+        // Функция для рисования линейной диаграммы
+        function drawLinearProgress(progress) {
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = `${progress * 100}%`;
         }
+
         // Обновление информации на странице
         function updateInfo() {
             const age = calculateAge(birthDate);
@@ -272,6 +253,7 @@
             document.getElementById('eighteenYears').innerHTML = `<span class="emoji">🎉</span> До 18-летия: <span class="highlight">${eighteenYears} дней</span>`;
             const schoolTime = daysUntilSchool(birthDate);
             document.getElementById('schoolTime').innerHTML = `<span class="emoji">📚</span> До школы: <span class="highlight">${schoolTime} дней</span>`;
+            
             // Расчет прогресса от последнего дня рождения до следующего
             const now = new Date();
             const lastBirthday = new Date(now.getFullYear(), birthDate.getMonth(), birthDate.getDate());
@@ -283,11 +265,14 @@
             const totalTime = nextBirthdayDate - lastBirthday;
             const elapsedTime = now - lastBirthday;
             const progress = elapsedTime / totalTime;
-            // Отрисовка круговой диаграммы
-            drawPieChart(progress);
+            
+            // Отрисовка линейной диаграммы
+            drawLinearProgress(progress);
         }
+
         // Обновление информации каждые 30 секунд
         setInterval(updateInfo, 3000);
+
         // Первоначальное обновление информации
         updateInfo();
     </script>
