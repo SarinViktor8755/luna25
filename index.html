@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Валерия : возраст</title>
-	<link rel="icon" type="image/x-icon" href="icons8.png">
+    <link rel="icon" type="image/x-icon" href="icons8.png">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -26,6 +26,17 @@
         h1 {
             text-align: center;
             color: white;
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        /* Анимация для слова Валерия */
+        h1 span {
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
         .info {
             margin-bottom: 20px;
@@ -33,6 +44,8 @@
         .info p {
             margin: 10px 0;
             color: white;
+            font-size: 1.2em;
+            line-height: 1.6;
         }
         canvas {
             margin-top: 20px;
@@ -53,11 +66,22 @@
             max-width: 200px; /* Максимальная ширина фото */
             height: auto; /* Автоматическая высота */
         }
+        /* Стиль для выделения важных данных */
+        .highlight {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+        /* Стиль для эмодзи */
+        .emoji {
+            font-size: 1.5em;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>ДР Валерии</h1>
+        <h1><span>Валерия</span> 🎉</h1>
         <div class="info">
             <!-- Добавляем фото в рамку -->
             <div class="photo-frame">
@@ -68,9 +92,9 @@
             <p id="fiveYears"></p>
             <p id="tenYears"></p>
             <p id="eighteenYears"></p>
+            <p id="schoolTime"></p>
         </div>
         <canvas id="progressChart" width="300" height="300"></canvas>
-       
     </div>
 
     <script>
@@ -129,6 +153,18 @@
             return diffDays;
         }
 
+        // Функция для расчета времени до школы
+        function daysUntilSchool(birthDate) {
+            const schoolStartDate = new Date(birthDate.getFullYear() + 7, 8, 1); // 1 сентября, когда ей исполнится 7 лет
+            const now = new Date();
+            if (now > schoolStartDate) {
+                schoolStartDate.setFullYear(schoolStartDate.getFullYear() + 1);
+            }
+            const diffTime = schoolStartDate - now;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            return diffDays;
+        }
+
         // Функция для рисования круговой диаграммы с обозначением месяцев
         function drawPieChart(progress) {
             const canvas = document.getElementById('progressChart');
@@ -178,19 +214,22 @@
         // Обновление информации на странице
         function updateInfo() {
             const age = calculateAge(birthDate);
-            document.getElementById('age').innerText = `Возраст ребенка: \n${age.years} лет, ${age.months} месяцев, ${age.days} дней\n ${age.hours} часов, ${age.minutes} минут, ${age.seconds} сек`;
+            document.getElementById('age').innerHTML = `<span class="emoji">👶</span> Возраст ребенка: <span class="highlight">${age.years} лет, ${age.months} месяцев, ${age.days} дней</span><br>${age.hours} часов, ${age.minutes} минут, ${age.seconds} сек`;
 
             const nextBirthday = daysUntilNextBirthday(birthDate);
-            document.getElementById('nextBirthday').innerText = `До следующего дня рождения: ${nextBirthday} дней`;
+            document.getElementById('nextBirthday').innerHTML = `<span class="emoji">🎂</span> До следующего дня рождения: <span class="highlight">${nextBirthday} дней</span>`;
 
             const fiveYears = daysUntilAge(birthDate, 5);
-            document.getElementById('fiveYears').innerText = `До 5-летия: ${fiveYears} дней`;
+            document.getElementById('fiveYears').innerHTML = `<span class="emoji">🎈</span> До 5-летия: <span class="highlight">${fiveYears} дней</span>`;
 
             const tenYears = daysUntilAge(birthDate, 10);
-            document.getElementById('tenYears').innerText = `До 10-летия: ${tenYears} дней`;
+            document.getElementById('tenYears').innerHTML = `<span class="emoji">🌟</span> До 10-летия: <span class="highlight">${tenYears} дней</span>`;
 
             const eighteenYears = daysUntilAge(birthDate, 18);
-            document.getElementById('eighteenYears').innerText = `До 18-летия: ${eighteenYears} дней`;
+            document.getElementById('eighteenYears').innerHTML = `<span class="emoji">🎉</span> До 18-летия: <span class="highlight">${eighteenYears} дней</span>`;
+
+            const schoolTime = daysUntilSchool(birthDate);
+            document.getElementById('schoolTime').innerHTML = `<span class="emoji">📚</span> До школы: <span class="highlight">${schoolTime} дней</span>`;
 
             // Расчет прогресса от последнего дня рождения до следующего
             const now = new Date();
