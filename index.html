@@ -8,12 +8,25 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
             background-color: #013d42;
             color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow-x: hidden; /* Убираем горизонтальную прокрутку */
+        }
+        /* Стиль для параллакса */
+        .parallax {
+            position: relative;
+            height: 500px; /* Высота секции с параллаксом */
+            background-image: url('photo_2025.jpg'); /* Фоновое изображение */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Фиксированный фон для параллакса */
+            z-index: -1;
         }
         .container {
             max-width: 1200px;
@@ -24,7 +37,9 @@
             text-align: left;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Центрируем содержимое контейнера */
+            align-items: center;
+            position: relative;
+            z-index: 1; /* Передний план над параллаксом */
         }
         h1 {
             text-align: center;
@@ -73,6 +88,26 @@
             height: auto; /* Автоматическая высота */
             margin: 0 auto; /* Дополнительное центрирование внутри контейнера */
         }
+        /* Эффект салюта */
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            pointer-events: none; /* Игнорировать взаимодействие с мышью */
+            animation: sparkleFade 1s ease-out forwards;
+        }
+        @keyframes sparkleFade {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
         /* Стиль для выделения важных данных */
         .highlight {
             color: #ffcc00;
@@ -87,6 +122,10 @@
     </style>
 </head>
 <body>
+    <!-- Параллакс -->
+    <div class="parallax"></div>
+
+    <!-- Основной контент -->
     <div class="container">
         <h1>🎉<span>Валерия</span>🎉</h1>
         <div class="info">
@@ -103,7 +142,22 @@
         </div>
         <canvas id="progressChart" width="300" height="300"></canvas>
     </div>
+
     <script>
+        // Эффект салюта
+        document.addEventListener('mousemove', (event) => {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            sparkle.style.left = `${event.pageX}px`;
+            sparkle.style.top = `${event.pageY}px`;
+            document.body.appendChild(sparkle);
+
+            // Удаляем элемент после завершения анимации
+            sparkle.addEventListener('animationend', () => {
+                sparkle.remove();
+            });
+        });
+
         // Дата рождения ребенка
         const birthDate = new Date('2025-03-14T10:15:00');
         // Функция для расчета возраста
