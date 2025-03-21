@@ -15,17 +15,16 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow-x: hidden; /* Убираем горизонтальную прокрутку */
+            overflow-x: hidden;
         }
-        /* Стиль для параллакса */
         .parallax {
             position: relative;
-            height: 500px; /* Высота секции с параллаксом */
-            background-image: url('photo_2025.jpg'); /* Фоновое изображение */
+            height: 500px;
+            background-image: url('photo_2025.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed; /* Фиксированный фон для параллакса */
+            background-attachment: fixed;
             z-index: -1;
         }
         .container {
@@ -39,7 +38,7 @@
             flex-direction: column;
             align-items: center;
             position: relative;
-            z-index: 1; /* Передний план над параллаксом */
+            z-index: 1;
         }
         h1 {
             text-align: center;
@@ -47,7 +46,6 @@
             font-size: 3em;
             margin-bottom: 20px;
         }
-        /* Анимация для слова Валерия */
         h1 span {
             display: inline-block;
             animation: bounce 2s infinite;
@@ -58,7 +56,8 @@
         }
         .info {
             margin-bottom: 20px;
-            text-align: center; /* Выравниваем текст по центру */
+            text-align: center;
+            width: 100%;
         }
         .info p {
             margin: 10px 0;
@@ -66,48 +65,30 @@
             font-size: 1.2em;
             line-height: 1.6;
         }
-        /* Стили для линейной диаграммы */
-        #progressBarContainer {
-            width: 100%;
-            max-width: 400px;
-            height: 30px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            overflow: hidden;
-            margin-top: 20px;
-        }
-        #progressBar {
-            height: 100%;
-            background-color: #ffffff;
-            width: 0%;
-            border-radius: 15px;
-            transition: width 0.5s ease-in-out; /* Плавная анимация */
-        }
         .photo-frame {
             margin-bottom: 20px;
-            border: 5px solid #ffffff; /* Белая рамка */
-            border-radius: 10px; /* Закругленные углы */
-            padding: 5px; /* Отступ внутри рамки */
-            background-color: rgba(255, 255, 255, 0.1); /* Легкий фон для рамки */
-            display: flex; /* Используем flexbox для центрирования */
-            justify-content: center; /* Центрирование по горизонтали */
-            align-items: center; /* Центрирование по вертикали */
+            border: 5px solid #ffffff;
+            border-radius: 10px;
+            padding: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .photo-frame img {
             display: block;
-            border-radius: 5px; /* Закругленные углы для фото */
-            max-width: 200px; /* Максимальная ширина фото */
-            height: auto; /* Автоматическая высота */
-            margin: 0 auto; /* Дополнительное центрирование внутри контейнера */
+            border-radius: 5px;
+            max-width: 200px;
+            height: auto;
+            margin: 0 auto;
         }
-        /* Эффект салюта */
         .sparkle {
             position: absolute;
             width: 10px;
             height: 10px;
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 50%;
-            pointer-events: none; /* Игнорировать взаимодействие с мышью */
+            pointer-events: none;
             animation: sparkleFade 1s ease-out forwards;
         }
         @keyframes sparkleFade {
@@ -120,38 +101,66 @@
                 opacity: 0;
             }
         }
-        /* Стиль для выделения важных данных */
         .highlight {
             color: #ffcc00;
             font-weight: bold;
         }
-        /* Стиль для эмодзи */
         .emoji {
             font-size: 1.5em;
             vertical-align: middle;
             margin-right: 5px;
         }
+        .progressBarContainer {
+            width: 100%;
+            max-width: 400px;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .progressBar {
+            height: 100%;
+            background-color: #ffcc00;
+            width: 0%;
+            border-radius: 10px;
+            transition: width 0.5s ease-in-out;
+        }
     </style>
 </head>
 <body>
-    <!-- Основной контент -->
     <div class="container">
         <h1>🎉<span>Валерия</span>🎉</h1>
         <div class="info">
-            <!-- Добавляем фото в рамку -->
             <div class="photo-frame">
                 <img src="photo_2025.jpg" alt="Фото Валерии">
             </div>
             <p id="age"></p>
             <p id="nextBirthday"></p>
+            <div class="progressBarContainer">
+                <div id="progressBarYear" class="progressBar"></div>
+            </div>
             <p id="fiveYears"></p>
+            <div class="progressBarContainer">
+                <div id="progressBar5" class="progressBar"></div>
+            </div>
             <p id="tenYears"></p>
+            <div class="progressBarContainer">
+                <div id="progressBar10" class="progressBar"></div>
+            </div>
             <p id="eighteenYears"></p>
+            <div class="progressBarContainer">
+                <div id="progressBar18" class="progressBar"></div>
+            </div>
             <p id="schoolTime"></p>
-        </div>
-        <!-- Линейная диаграмма прогресса -->
-        <div id="progressBarContainer">
-            <div id="progressBar"></div>
+            <div class="progressBarContainer">
+                <div id="progressBarSchool" class="progressBar"></div>
+            </div>
+            <!-- Новый блок для пенсии -->
+            <p id="retirement"></p>
+            <div class="progressBarContainer">
+                <div id="progressBarRetirement" class="progressBar"></div>
+            </div>
         </div>
     </div>
     <script>
@@ -162,7 +171,6 @@
             sparkle.style.left = `${event.pageX}px`;
             sparkle.style.top = `${event.pageY}px`;
             document.body.appendChild(sparkle);
-            // Удаляем элемент после завершения анимации
             sparkle.addEventListener('animationend', () => {
                 sparkle.remove();
             });
@@ -233,13 +241,66 @@
             return diffDays;
         }
 
-        // Функция для рисования линейной диаграммы
-        function drawLinearProgress(progress) {
-            const progressBar = document.getElementById('progressBar');
-            progressBar.style.width = `${progress * 100}%`;
+        // Функция для расчета дней до пенсии
+        function daysUntilRetirement(birthDate) {
+            const retirementAge = 60; // Возраст выхода на пенсию
+            const retirementDate = new Date(birthDate);
+            retirementDate.setFullYear(birthDate.getFullYear() + retirementAge);
+            const now = new Date();
+            const diffTime = retirementDate - now;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            return diffDays;
         }
 
-        // Обновление информации на странице
+        // Функция для расчета прогресса текущего года
+        function calculateYearProgress(birthDate) {
+            const now = new Date();
+            const lastBirthday = new Date(now.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+            if (lastBirthday > now) {
+                lastBirthday.setFullYear(now.getFullYear() - 1);
+            }
+            const nextBirthday = new Date(lastBirthday);
+            nextBirthday.setFullYear(lastBirthday.getFullYear() + 1);
+            const totalTime = nextBirthday - lastBirthday;
+            const elapsedTime = now - lastBirthday;
+            const progress = elapsedTime / totalTime;
+            return progress;
+        }
+
+        // Функция для расчета прогресса до определенного возраста
+        function calculateProgress(birthDate, targetAge) {
+            const now = new Date();
+            const targetDate = new Date(birthDate);
+            targetDate.setFullYear(birthDate.getFullYear() + targetAge);
+            const totalTime = targetDate - birthDate;
+            const elapsedTime = now - birthDate;
+            const progress = Math.min(elapsedTime / totalTime, 1); // Ограничиваем прогресс до 100%
+            return progress;
+        }
+
+        // Функция для расчета прогресса до школы
+        function calculateSchoolProgress(birthDate) {
+            const now = new Date();
+            const schoolStartDate = new Date(birthDate.getFullYear() + 7, 8, 1); // 1 сентября, когда ей исполнится 7 лет
+            const totalTime = schoolStartDate - birthDate;
+            const elapsedTime = now - birthDate;
+            const progress = Math.min(elapsedTime / totalTime, 1); // Ограничиваем прогресс до 100%
+            return progress;
+        }
+
+        // Функция для расчета прогресса до пенсии
+        function calculateRetirementProgress(birthDate) {
+            const now = new Date();
+            const retirementAge = 60;
+            const retirementDate = new Date(birthDate);
+            retirementDate.setFullYear(birthDate.getFullYear() + retirementAge);
+            const totalTime = retirementDate - birthDate;
+            const elapsedTime = now - birthDate;
+            const progress = Math.min(elapsedTime / totalTime, 1); // Ограничиваем прогресс до 100%
+            return progress;
+        }
+
+        // Функция для обновления информации и прогресс-баров
         function updateInfo() {
             const age = calculateAge(birthDate);
             document.getElementById('age').innerHTML = `<span class="emoji">👶</span> Возраст ребенка: <span class="highlight"><br>${age.years} лет, ${age.months} месяцев, ${age.days} дней</span><br>${age.hours} часов, ${age.minutes} минут, ${age.seconds} сек`;
@@ -254,23 +315,27 @@
             const schoolTime = daysUntilSchool(birthDate);
             document.getElementById('schoolTime').innerHTML = `<span class="emoji">📚</span> До школы: <span class="highlight">${schoolTime} дней</span>`;
             
-            // Расчет прогресса от последнего дня рождения до следующего
-            const now = new Date();
-            const lastBirthday = new Date(now.getFullYear(), birthDate.getMonth(), birthDate.getDate());
-            if (lastBirthday > now) {
-                lastBirthday.setFullYear(now.getFullYear() - 1);
-            }
-            const nextBirthdayDate = new Date(lastBirthday);
-            nextBirthdayDate.setFullYear(lastBirthday.getFullYear() + 1);
-            const totalTime = nextBirthdayDate - lastBirthday;
-            const elapsedTime = now - lastBirthday;
-            const progress = elapsedTime / totalTime;
+            // Новый блок для пенсии
+            const retirement = daysUntilRetirement(birthDate);
+            document.getElementById('retirement').innerHTML = `<span class="emoji">👵</span> До пенсии: <span class="highlight">${retirement} дней</span>`;
             
-            // Отрисовка линейной диаграммы
-            drawLinearProgress(progress);
+            // Обновление прогресс-баров
+            const yearProgress = calculateYearProgress(birthDate);
+            const progress5 = calculateProgress(birthDate, 5);
+            const progress10 = calculateProgress(birthDate, 10);
+            const progress18 = calculateProgress(birthDate, 18);
+            const progressSchool = calculateSchoolProgress(birthDate);
+            const progressRetirement = calculateRetirementProgress(birthDate);
+            
+            document.getElementById('progressBarYear').style.width = `${yearProgress * 100}%`;
+            document.getElementById('progressBar5').style.width = `${progress5 * 100}%`;
+            document.getElementById('progressBar10').style.width = `${progress10 * 100}%`;
+            document.getElementById('progressBar18').style.width = `${progress18 * 100}%`;
+            document.getElementById('progressBarSchool').style.width = `${progressSchool * 100}%`;
+            document.getElementById('progressBarRetirement').style.width = `${progressRetirement * 100}%`;
         }
 
-        // Обновление информации каждые 30 секунд
+        // Обновление информации каждые 3 секунды
         setInterval(updateInfo, 3000);
 
         // Первоначальное обновление информации
