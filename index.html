@@ -65,22 +65,31 @@
             font-size: 1.2em;
             line-height: 1.6;
         }
-        .photo-frame {
-            margin-bottom: 20px;
+        .slideshow-container {
+            width: 100%;
+            max-width: 350px;
+            height: 350px;
+            overflow: hidden;
+            position: relative;
             border: 5px solid #ffffff;
             border-radius: 10px;
-            padding: 5px;
             background-color: rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin: 0 auto; /* Центрирование по горизонтали */
         }
-        .photo-frame img {
-            display: block;
+        .slideshow {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+        .slideshow img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             border-radius: 5px;
-            max-width: 200px;
-            height: auto;
-            margin: 0 auto;
+            display: none; /* Скрываем все изображения по умолчанию */
+        }
+        .slideshow img.active {
+            display: block; /* Показываем активное изображение */
         }
         .sparkle {
             position: absolute;
@@ -148,8 +157,10 @@
     <div class="container">
         <h1>🎉<span>Валерия</span>🎉</h1>
         <div class="info">
-            <div class="photo-frame">
-                <img src="img/photo_2025.jpg" alt="Фото Валерии">
+            <div class="slideshow-container">
+                <div class="slideshow" id="slideshow">
+                    <!-- Изображения будут добавлены через JavaScript -->
+                </div>
             </div>
             <p id="age"></p>
             <p id="nextBirthday"></p>
@@ -191,10 +202,42 @@
             });
         });
 
-        // Дата рождения ребенка
+        // Слайд-шоу
+        const slideshow = document.getElementById('slideshow');
+        const images = [
+            'img/1.jpg',
+            'img/2.jpg',
+            'img/3.jpg',
+            'img/4.jpg'
+        ]; // Добавьте пути к вашим изображениям
+
+        // Загрузка изображений в слайд-шоу
+        images.forEach((image, index) => {
+            const img = document.createElement('img');
+            img.src = image;
+            if (index === 0) img.classList.add('active'); // Первое изображение активно
+            slideshow.appendChild(img);
+        });
+
+        let currentIndex = 0;
+
+        function showNextImage() {
+            // Скрываем текущее изображение
+            const currentImage = slideshow.querySelector('.active');
+            currentImage.classList.remove('active');
+
+            // Переходим к следующему изображению
+            currentIndex = (currentIndex + 1) % images.length;
+            const nextImage = slideshow.children[currentIndex];
+            nextImage.classList.add('active');
+        }
+
+        // Автоматическая смена изображений каждые 3 секунды
+        setInterval(showNextImage, 3000);
+
+        // Остальной код для расчета возраста и прогресс-баров
         const birthDate = new Date('2025-03-14T10:15:00');
 
-        // Функция для расчета возраста
         function calculateAge(birthDate) {
             const now = new Date();
             let years = now.getFullYear() - birthDate.getFullYear();
@@ -222,7 +265,6 @@
             return { years, months, days, hours, minutes, seconds };
         }
 
-        // Функция для расчета дней до следующего дня рождения
         function daysUntilNextBirthday(birthDate) {
             const now = new Date();
             const nextBirthday = new Date(now.getFullYear(), birthDate.getMonth(), birthDate.getDate());
@@ -234,7 +276,6 @@
             return diffDays;
         }
 
-        // Функция для расчета дней до определенного возраста
         function daysUntilAge(birthDate, targetAge) {
             const targetDate = new Date(birthDate);
             targetDate.setFullYear(birthDate.getFullYear() + targetAge);
@@ -244,7 +285,6 @@
             return diffDays;
         }
 
-        // Функция для расчета времени до школы
         function daysUntilSchool(birthDate) {
             const schoolStartDate = new Date(birthDate.getFullYear() + 7, 8, 1); // 1 сентября, когда ей исполнится 7 лет
             const now = new Date();
@@ -256,7 +296,6 @@
             return diffDays;
         }
 
-        // Функция для расчета дней до пенсии
         function daysUntilRetirement(birthDate) {
             const retirementAge = 60; // Возраст выхода на пенсию
             const retirementDate = new Date(birthDate);
@@ -267,7 +306,6 @@
             return diffDays;
         }
 
-        // Функция для расчета прогресса текущего года
         function calculateYearProgress(birthDate) {
             const now = new Date();
             const lastBirthday = new Date(now.getFullYear(), birthDate.getMonth(), birthDate.getDate());
@@ -282,7 +320,6 @@
             return progress;
         }
 
-        // Функция для расчета прогресса до определенного возраста
         function calculateProgress(birthDate, targetAge) {
             const now = new Date();
             const targetDate = new Date(birthDate);
@@ -293,7 +330,6 @@
             return progress;
         }
 
-        // Функция для расчета прогресса до школы
         function calculateSchoolProgress(birthDate) {
             const now = new Date();
             const schoolStartDate = new Date(birthDate.getFullYear() + 7, 8, 1); // 1 сентября, когда ей исполнится 7 лет
@@ -303,7 +339,6 @@
             return progress;
         }
 
-        // Функция для расчета прогресса до пенсии
         function calculateRetirementProgress(birthDate) {
             const now = new Date();
             const retirementAge = 60;
@@ -315,7 +350,6 @@
             return progress;
         }
 
-        // Функция для обновления информации и прогресс-баров
         function updateInfo() {
             const age = calculateAge(birthDate);
             document.getElementById('age').innerHTML = `<span class="emoji">👶</span> Возраст ребенка: <span class="highlight"><br>${age.years} лет, ${age.months} месяцев, ${age.days} дней</span><br>${age.hours} часов, ${age.minutes} минут, ${age.seconds} сек`;
