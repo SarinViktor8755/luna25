@@ -118,6 +118,7 @@
             border-radius: 10px;
             overflow: hidden;
             margin-top: 10px;
+            position: relative;
         }
         .progressBar {
             height: 100%;
@@ -126,6 +127,21 @@
             border-radius: 10px;
             transition: width 0.5s ease-in-out;
         }
+        .progressBarContainer.complete {
+            background-color: rgba(0, 255, 0, 0.2);
+        }
+        .progressBarContainer.complete .progressBar {
+            background-color: green;
+        }
+        .progressBarContainer.complete::after {
+            content: '✔';
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: green;
+            font-size: 1.2em;
+        }
     </style>
 </head>
 <body>
@@ -133,7 +149,7 @@
         <h1>🎉<span>Валерия</span>🎉</h1>
         <div class="info">
             <div class="photo-frame">
-                <img src="photo_2025.jpg" alt="Фото Валерии">
+                <img src="img/photo_2025.jpg" alt="Фото Валерии">
             </div>
             <p id="age"></p>
             <p id="nextBirthday"></p>
@@ -144,6 +160,10 @@
             <div class="progressBarContainer">
                 <div id="progressBar5" class="progressBar"></div>
             </div>
+            <p id="schoolTime"></p>
+            <div class="progressBarContainer">
+                <div id="progressBarSchool" class="progressBar"></div>
+            </div>
             <p id="tenYears"></p>
             <div class="progressBarContainer">
                 <div id="progressBar10" class="progressBar"></div>
@@ -152,11 +172,6 @@
             <div class="progressBarContainer">
                 <div id="progressBar18" class="progressBar"></div>
             </div>
-            <p id="schoolTime"></p>
-            <div class="progressBarContainer">
-                <div id="progressBarSchool" class="progressBar"></div>
-            </div>
-            <!-- Новый блок для пенсии -->
             <p id="retirement"></p>
             <div class="progressBarContainer">
                 <div id="progressBarRetirement" class="progressBar"></div>
@@ -304,21 +319,73 @@
         function updateInfo() {
             const age = calculateAge(birthDate);
             document.getElementById('age').innerHTML = `<span class="emoji">👶</span> Возраст ребенка: <span class="highlight"><br>${age.years} лет, ${age.months} месяцев, ${age.days} дней</span><br>${age.hours} часов, ${age.minutes} минут, ${age.seconds} сек`;
+
             const nextBirthday = daysUntilNextBirthday(birthDate);
-            document.getElementById('nextBirthday').innerHTML = `<span class="emoji">🎂</span> До следующего дня рождения: <span class="highlight">${nextBirthday} дней</span>`;
+            const nextBirthdayElement = document.getElementById('nextBirthday');
+            const progressBarYearContainer = document.getElementById('progressBarYear').parentElement;
+            if (nextBirthday <= 0) {
+                nextBirthdayElement.innerHTML = `<span class="emoji">🎂</span> День рождения уже наступил! <span class="highlight">🎉</span>`;
+                progressBarYearContainer.classList.add('complete');
+            } else {
+                nextBirthdayElement.innerHTML = `<span class="emoji">🎂</span> До следующего дня рождения: <span class="highlight">${nextBirthday} дней</span>`;
+                progressBarYearContainer.classList.remove('complete');
+            }
+
             const fiveYears = daysUntilAge(birthDate, 5);
-            document.getElementById('fiveYears').innerHTML = `<span class="emoji">🎈</span> До 5-летия: <span class="highlight">${fiveYears} дней</span>`;
+            const fiveYearsElement = document.getElementById('fiveYears');
+            const progressBar5Container = document.getElementById('progressBar5').parentElement;
+            if (fiveYears <= 0) {
+                fiveYearsElement.innerHTML = `<span class="emoji">🎈</span> 5 лет уже наступили! <span class="highlight">🎉</span>`;
+                progressBar5Container.classList.add('complete');
+            } else {
+                fiveYearsElement.innerHTML = `<span class="emoji">🎈</span> До 5-летия: <span class="highlight">${fiveYears} дней</span>`;
+                progressBar5Container.classList.remove('complete');
+            }
+
             const tenYears = daysUntilAge(birthDate, 10);
-            document.getElementById('tenYears').innerHTML = `<span class="emoji">🌟</span> До 10-летия: <span class="highlight">${tenYears} дней</span>`;
+            const tenYearsElement = document.getElementById('tenYears');
+            const progressBar10Container = document.getElementById('progressBar10').parentElement;
+            if (tenYears <= 0) {
+                tenYearsElement.innerHTML = `<span class="emoji">🌟</span> 10 лет уже наступили! <span class="highlight">🎉</span>`;
+                progressBar10Container.classList.add('complete');
+            } else {
+                tenYearsElement.innerHTML = `<span class="emoji">🌟</span> До 10-летия: <span class="highlight">${tenYears} дней</span>`;
+                progressBar10Container.classList.remove('complete');
+            }
+
             const eighteenYears = daysUntilAge(birthDate, 18);
-            document.getElementById('eighteenYears').innerHTML = `<span class="emoji">🎉</span> До 18-летия: <span class="highlight">${eighteenYears} дней</span>`;
+            const eighteenYearsElement = document.getElementById('eighteenYears');
+            const progressBar18Container = document.getElementById('progressBar18').parentElement;
+            if (eighteenYears <= 0) {
+                eighteenYearsElement.innerHTML = `<span class="emoji">🎉</span> 18 лет уже наступили! <span class="highlight">🎉</span>`;
+                progressBar18Container.classList.add('complete');
+            } else {
+                eighteenYearsElement.innerHTML = `<span class="emoji">🎉</span> До 18-летия: <span class="highlight">${eighteenYears} дней</span>`;
+                progressBar18Container.classList.remove('complete');
+            }
+
             const schoolTime = daysUntilSchool(birthDate);
-            document.getElementById('schoolTime').innerHTML = `<span class="emoji">📚</span> До школы: <span class="highlight">${schoolTime} дней</span>`;
-            
-            // Новый блок для пенсии
+            const schoolTimeElement = document.getElementById('schoolTime');
+            const progressBarSchoolContainer = document.getElementById('progressBarSchool').parentElement;
+            if (schoolTime <= 0) {
+                schoolTimeElement.innerHTML = `<span class="emoji">📚</span> Школа уже началась! <span class="highlight">🎉</span>`;
+                progressBarSchoolContainer.classList.add('complete');
+            } else {
+                schoolTimeElement.innerHTML = `<span class="emoji">📚</span> До школы: <span class="highlight">${schoolTime} дней</span>`;
+                progressBarSchoolContainer.classList.remove('complete');
+            }
+
             const retirement = daysUntilRetirement(birthDate);
-            document.getElementById('retirement').innerHTML = `<span class="emoji">👵</span> До пенсии: <span class="highlight">${retirement} дней</span>`;
-            
+            const retirementElement = document.getElementById('retirement');
+            const progressBarRetirementContainer = document.getElementById('progressBarRetirement').parentElement;
+            if (retirement <= 0) {
+                retirementElement.innerHTML = `<span class="emoji">👵</span> Пенсия уже наступила! <span class="highlight">🎉</span>`;
+                progressBarRetirementContainer.classList.add('complete');
+            } else {
+                retirementElement.innerHTML = `<span class="emoji">👵</span> До пенсии: <span class="highlight">${retirement} дней</span>`;
+                progressBarRetirementContainer.classList.remove('complete');
+            }
+
             // Обновление прогресс-баров
             const yearProgress = calculateYearProgress(birthDate);
             const progress5 = calculateProgress(birthDate, 5);
@@ -326,7 +393,7 @@
             const progress18 = calculateProgress(birthDate, 18);
             const progressSchool = calculateSchoolProgress(birthDate);
             const progressRetirement = calculateRetirementProgress(birthDate);
-            
+
             document.getElementById('progressBarYear').style.width = `${yearProgress * 100}%`;
             document.getElementById('progressBar5').style.width = `${progress5 * 100}%`;
             document.getElementById('progressBar10').style.width = `${progress10 * 100}%`;
