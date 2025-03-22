@@ -17,7 +17,15 @@
             align-items: center;
             overflow-x: hidden;
         }
-
+.unselectable {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -148,7 +156,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container unselectable">
         <h1>🎉<span>Валерия</span>🎉</h1>
         <div class="info">
             <div class="slideshow-container">
