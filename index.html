@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Валерия : возраст</title>
+    <title>Виктория : возраст</title>
     <link rel="icon" type="image/x-icon" href="icons8.png">
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -52,16 +52,39 @@
             font-size: 3em;
             margin-bottom: 20px;
             font-family: 'Dancing Script', cursive;
+            position: relative;
+            display: inline-block;
         }
 
         h1 span {
             display: inline-block;
             animation: bounce 2s infinite;
+            position: relative;
         }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
+        }
+
+        .heart-bubble {
+            position: fixed;
+            font-size: 20px;
+            pointer-events: none;
+            animation: float-up 3s ease-out forwards;
+            opacity: 0.8;
+            z-index: 100;
+        }
+
+        @keyframes float-up {
+            0% { 
+                transform: translateY(0) scale(0.5);
+                opacity: 0.8;
+            }
+            100% { 
+                transform: translateY(-100px) scale(1.2);
+                opacity: 0;
+            }
         }
 
         .info {
@@ -186,8 +209,8 @@
         
         .anniversary-frame {
             position: relative;
-            width: 360px; /* Половина от оригинального размера для лучшего отображения */
-            height: 540px; /* Сохраняем соотношение 2:3 (720:1080) */
+            width: 360px;
+            height: 540px;
             border: 15px solid transparent;
             border-image: linear-gradient(45deg, #ffcc00, #ff6699, #66ccff) 1;
             padding: 10px;
@@ -247,12 +270,16 @@
                 font-size: 2rem;
                 bottom: 10px;
             }
+            
+            h1 {
+                font-size: 2.5em;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container unselectable">
-        <h1>🎉<span>Валерия</span>🎉</h1>
+        <h1 id="name-title">🎉<span>Виктория</span>🎉</h1>
         <div class="info">
             <div class="slideshow-container">
                 <div class="slideshow" id="slideshow">
@@ -294,7 +321,7 @@
         <!-- Добавленная рамка с фотографией 720x1080 и подписью -->
         <div class="anniversary-container">
             <div class="anniversary-frame">
-                <img src="./img/10day.jpg" alt="10 дней" class="anniversary-photo">
+                <img src="./img/1.jpg" alt="10 дней" class="anniversary-photo">
                 <div class="anniversary-text">10 дней</div>
             </div>
         </div>
@@ -306,16 +333,48 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- Ваши скрипты -->
     <script>
-        // Эффект салюта
-        document.addEventListener('mousemove', (event) => {
-            const sparkle = document.createElement('div');
-            sparkle.classList.add('sparkle');
-            sparkle.style.left = `${event.pageX}px`;
-            sparkle.style.top = `${event.pageY}px`;
-            document.body.appendChild(sparkle);
-            sparkle.addEventListener('animationend', () => {
-                sparkle.remove();
-            });
+        // Функция создания сердечек
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.classList.add('heart-bubble');
+            
+            // Разные цвета сердечек
+            const colors = ['#ff6699', '#ff3366', '#ff0066', '#ff99cc', '#ff66b3'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            heart.style.color = randomColor;
+            
+            // Случайная позиция по горизонтали
+            const x = Math.random() * window.innerWidth;
+            heart.style.left = `${x}px`;
+            heart.style.bottom = '0';
+            
+            // Случайный размер
+            const size = Math.random() * 20 + 25;
+            heart.style.fontSize = `${size}px`;
+            
+            document.body.appendChild(heart);
+            
+            // Удаляем сердечко после завершения анимации
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }
+
+        // Запускаем создание сердечек с разной периодичностью
+        function startHeartAnimation() {
+            // Первое сердечко сразу
+            createHeart();
+            
+            // Случайный интервал для следующего сердечка (от 0.5 до 2 секунд)
+            const nextInterval = Math.random() * 350 + 50;
+            
+            setTimeout(startHeartAnimation, nextInterval);
+        }
+
+        // Начинаем анимацию после загрузки страницы
+        window.addEventListener('load', () => {
+            setTimeout(startHeartAnimation, 1000);
         });
 
         // Слайд-шоу
