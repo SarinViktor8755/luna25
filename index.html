@@ -306,7 +306,7 @@
                     <img src="./img/6.jpg" class="">
                 </div>
             </div>
-            <p id="age"><span class="emoji">👶</span> Возраст ребенка: <span class="highlight"><br>0 лет, 0 месяцев, 10 дней</span><br>2 часов, 12 минут, 4 сек</p>
+            <p id="age"><span class="emoji">👶</span> Возраст ребенка: <span class="highlight"><br>0 лет, 0 месяцев, 0 дней</span><br></p>
             <p id="nextBirthday"><span class="emoji">🎂</span> До следующего дня рождения: <span class="highlight">355 дней</span></p>
             <div class="progressBarContainer">
                 <div id="progressBarYear" class="progressBar" style="width: 2.88186%;"></div>
@@ -348,6 +348,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- Ваши скрипты -->
     <script>
+	window.onload = updateInfo;
         // Функция создания сердечек
         function createHeart() {
             const heart = document.createElement('div');
@@ -466,7 +467,7 @@
             document.getElementById('age').innerHTML = `<span class="emoji">👶</span> Возраст ребенка: <span class="highlight"><br>${age.years} лет, ${age.months} месяцев, ${age.days} дней</span><br>${age.hours} часов, ${age.minutes} минут, ${age.seconds} сек`;
         }
 
-        setInterval(updateInfo, 1000);
+        setInterval(updateInfo, 3000);
     </script>
 </body>
 </html>
