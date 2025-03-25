@@ -87,6 +87,18 @@
             }
         }
 
+		
+		@font-face {
+font-family: 'Exo 2.0 Extra Bold Italic';
+src: url('./fonts/Exo_2.0_Extra_Bold_Italic.ttf');
+}
+.text_effect {
+font-family: 'Exo 2.0 Extra Bold Italic';
+color: rgb(247, 247, 247);
+font-size: 49px;
+
+text-shadow: rgb(3, 3, 3) 4px 4px 4px;
+}
         .info {
             margin-bottom: 20px;
             text-align: center;
@@ -279,7 +291,8 @@
 </head>
 <body>
     <div class="container unselectable">
-        <h1 id="name-title">🎉<span>Валерия</span>🎉</h1>
+        <h1 id="name-title" class="text_effect">🎉<span>Валерия</span>🎉</h1>
+		
         <div class="info">
             <div class="slideshow-container">
                 <div class="slideshow" id="slideshow">
@@ -321,7 +334,7 @@
         <!-- Добавленная рамка с фотографией 720x1080 и подписью -->
         <div class="anniversary-container">
             <div class="anniversary-frame">
-                <img src="./img/10day.jpg" alt="10 дней" class="anniversary-photo">
+                <img src="./img/10day.jpg" alt="10 дней" class="anniversary-photo ">
                 <div class="anniversary-text">10 дней</div>
             </div>
         </div>
