@@ -228,7 +228,7 @@
     width: 360px;
     height: 540px;
     border: 10px solid;
-    padding: 10px;
+
     box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
     background-color: rgba(255, 255, 255, 0.1);
     display: flex
@@ -250,14 +250,14 @@
 position: absolute;
     bottom: 20px;
     left: 0;
-    right: 0;
+ 
     text-align: center;
     font-family: 'Dancing Script', cursive;
     font-size: 3rem;
     color: #ffffff;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     background: linear-gradient(135deg, #ae11cb, #4b6289);
-    padding: 15px;
+    padding: 4px;
     border-radius: 10px;
     margin: 0 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -311,19 +311,19 @@ position: absolute;
             <div class="progressBarContainer">
                 <div id="progressBarYear" class="progressBar" style="width: 2.88186%;"></div>
             </div>
-            <p id="fiveYears"><span class="emoji">🎈</span> До 5-летия: <span class="highlight">1816 дней</span></p>
+            <p id="fiveYears"><span class="emoji">🎈</span> До 5-летия: <span class="highlight"></span></p>
             <div class="progressBarContainer">
                 <div id="progressBar5" class="progressBar" style="width: 0.552668%;"></div>
             </div>
-            <p id="schoolTime"><span class="emoji">📚</span> До школы: <span class="highlight">2718 дней</span></p>
+            <p id="schoolTime"><span class="emoji">📚</span> До школы: <span class="highlight"></span></p>
             <div class="progressBarContainer">
                 <div id="progressBarSchool" class="progressBar" style="width: 0.369989%;"></div>
             </div>
-            <p id="tenYears"><span class="emoji">🌟</span> До 10-летия: <span class="highlight">3642 дней</span></p>
+            <p id="tenYears"><span class="emoji">🌟</span> До 10-летия: <span class="highlight"></span></p>
             <div class="progressBarContainer">
                 <div id="progressBar10" class="progressBar" style="width: 0.276334%;"></div>
             </div>
-            <p id="eighteenYears"><span class="emoji">🎉</span> До 18-летия: <span class="highlight">6564 дней</span></p>
+            <p id="eighteenYears"><span class="emoji">🎉</span> До 18-летия: <span class="highlight"></span></p>
             <div class="progressBarContainer">
                 <div id="progressBar18" class="progressBar" style="width: 0.15351%;"></div>
             </div>
@@ -381,7 +381,7 @@ position: absolute;
             // Удаляем сердечко после завершения анимации
             setTimeout(() => {
                 heart.remove();
-            }, 3000);
+            }, 5000);
         }
 
         // Запускаем создание сердечек с разной периодичностью
@@ -411,7 +411,7 @@ position: absolute;
 
         // Начинаем анимацию после загрузки страницы
         window.addEventListener('load', () => {
-            setTimeout(startHeartAnimation, 1000);
+            setTimeout(startHeartAnimation, 100);
             animateNameLetters();
         });
 
