@@ -56,15 +56,16 @@
             display: inline-block;
         }
 
-        h1 span {
+        .letter {
             display: inline-block;
-            animation: bounce 2s infinite;
             position: relative;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        @keyframes snake {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-15px) rotate(5deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(15px) rotate(-5deg); }
         }
 
         .heart-bubble {
@@ -87,18 +88,17 @@
             }
         }
 
-		
-		@font-face {
-font-family: 'Exo 2.0 Extra Bold Italic';
-src: url('./fonts/Exo_2.0_Extra_Bold_Italic.ttf');
-}
-.text_effect {
-font-family: 'Exo 2.0 Extra Bold Italic';
-color: rgb(247, 247, 247);
-font-size: 49px;
+        @font-face {
+            font-family: 'Exo 2.0 Extra Bold Italic';
+            src: url('./fonts/Exo_2.0_Extra_Bold_Italic.ttf');
+        }
+        .text_effect {
+            font-family: 'Exo 2.0 Extra Bold Italic';
+            color: rgb(247, 247, 247);
+            font-size: 49px;
+            text-shadow: rgb(3, 3, 3) 4px 4px 4px;
+        }
 
-text-shadow: rgb(3, 3, 3) 4px 4px 4px;
-}
         .info {
             margin-bottom: 20px;
             text-align: center;
@@ -291,8 +291,8 @@ text-shadow: rgb(3, 3, 3) 4px 4px 4px;
 </head>
 <body>
     <div class="container unselectable">
-        <h1 id="name-title" class="text_effect">🎉<span>Валерия</span>🎉</h1>
-		
+        <h1 id="name-title" class="text_effect">🎉<span id="name-letters"></span>🎉</h1>
+        
         <div class="info">
             <div class="slideshow-container">
                 <div class="slideshow" id="slideshow">
@@ -385,9 +385,24 @@ text-shadow: rgb(3, 3, 3) 4px 4px 4px;
             setTimeout(startHeartAnimation, nextInterval);
         }
 
+        // Анимация букв имени "Валерия"
+        function animateNameLetters() {
+            const name = "Валерия";
+            const nameLettersContainer = document.getElementById('name-letters');
+            
+            name.split('').forEach((letter, index) => {
+                const span = document.createElement('span');
+                span.className = 'letter';
+                span.textContent = letter;
+                span.style.animation = `snake 2s ${index * 0.2}s infinite ease-in-out`;
+                nameLettersContainer.appendChild(span);
+            });
+        }
+
         // Начинаем анимацию после загрузки страницы
         window.addEventListener('load', () => {
             setTimeout(startHeartAnimation, 1000);
+            animateNameLetters();
         });
 
         // Слайд-шоу
