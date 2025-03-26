@@ -462,10 +462,10 @@
         </div>
         
         <div class="anniversary-row">
-            <div class="anniversary-frame" onclick="openModal('./img/photo_2024-07-15_15-59-38.jpg', 'УЗИ')">
-                <img data-src="./img/photo_2024-07-15_15-59-38.jpg" alt="УЗИ" class="anniversary-photo" loading="lazy">
-                <div class="placeholder"></div>
-                <div class="anniversary-text">УЗИ</div>
+            <div class="anniversary-frame" onclick="openModal('./img/photo_2024-07-15_15-59-38.jpg', 'УЗИ 15.07.24')">
+                <img data-src="./img/photo_2024-07-15_15-59-38.jpg" alt="УЗИ 15.07.24" class="anniversary-photo" loading="lazy">
+                <div class="placeholder">УЗИ 15.07.24</div>
+                <div class="anniversary-text">УЗИ 15.07.24</div>
             </div> 
             
             <div class="anniversary-frame" onclick="openModal('./img/minus2.jpg', 'УЗИ')">
@@ -474,10 +474,10 @@
                 <div class="anniversary-text">УЗИ</div>
             </div> 
             
-            <div class="anniversary-frame" onclick="openModal('./img/minus1.jpg', 'УЗИ')">
+            <div class="anniversary-frame" onclick="openModal('./img/minus1.jpg', '3D УЗИ')">
                 <img data-src="./img/minus1.jpg" alt="УЗИ" class="anniversary-photo" loading="lazy">
                 <div class="placeholder"></div>
-                <div class="anniversary-text">УЗИ</div>
+                <div class="anniversary-text">3D УЗИ</div>
             </div>
         </div>
         
@@ -725,17 +725,35 @@
             return { years, months, days, hours, minutes, seconds };
         }
 
+        // Расчет дней до дня рождения (исправленная версия)
+        function getDaysUntilBirthday(birthday) {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0); // Устанавливаем время на начало дня
+            
+            // Получаем день рождения в текущем году
+            let nextBirthday = new Date(today.getFullYear(), birthday.getMonth(), birthday.getDate());
+            
+            // Если день рождения в этом году уже прошел, берем следующий год
+            if (today > nextBirthday) {
+                nextBirthday = new Date(today.getFullYear() + 1, birthday.getMonth(), birthday.getDate());
+            }
+            
+            // Разница в миллисекундах
+            const diffTime = nextBirthday - today;
+            
+            // Переводим в дни (округляем вверх)
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            return diffDays;
+        }
+
         // Расчет дней до различных событий
         function calculateDaysToEvents(birthDate) {
             const now = new Date();
             const currentYear = now.getFullYear();
             
-            // До следующего дня рождения
-            let nextBirthday = new Date(currentYear, birthDate.getMonth(), birthDate.getDate());
-            if (now > nextBirthday) {
-                nextBirthday = new Date(currentYear + 1, birthDate.getMonth(), birthDate.getDate());
-            }
-            const daysToBirthday = Math.floor((nextBirthday - now) / (1000 * 60 * 60 * 24));
+            // Используем новую функцию для дня рождения
+            const daysToBirthday = getDaysUntilBirthday(birthDate);
             
             // До 5 лет
             const fiveYearsDate = new Date(birthDate.getFullYear() + 5, birthDate.getMonth(), birthDate.getDate());
@@ -792,6 +810,9 @@
                     case 'progressBarRetirement':
                         textElement.innerHTML = `<span class="emoji">👵</span> Пенсия: <span class="highlight">Поздравляю, бабушка!</span>`;
                         break;
+                    case 'progressBarYear':
+                        textElement.innerHTML = `<span class="emoji">🎂</span> День рождения: <span class="highlight">Сегодня!</span>`;
+                        break;
                     default:
                         textElement.innerHTML = textElement.innerHTML.replace("До", "Уже");
                 }
@@ -822,6 +843,9 @@
                     case 'progressBarRetirement':
                         textElement.innerHTML = `<span class="emoji">👵</span> До пенсии: <span class="highlight">${daysRemaining} дней</span>`;
                         break;
+                    case 'progressBarYear':
+                        textElement.innerHTML = `<span class="emoji">🎂</span> До дня рождения: <span class="highlight">${daysRemaining} дней</span>`;
+                        break;
                 }
             }
         }
@@ -831,7 +855,7 @@
             const events = calculateDaysToEvents(birthDate);
             
             // До следующего дня рождения
-            updateProgressBar('progressBarYear', events.daysToBirthday, 365, 'До следующего дня рождения');
+            updateProgressBar('progressBarYear', events.daysToBirthday, 365, 'До дня рождения');
             
             // До 5 лет
             updateProgressBar('progressBar5', events.daysTo5Years, 5 * 365, 'До 5-летия');
