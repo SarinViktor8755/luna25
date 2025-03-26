@@ -91,10 +91,10 @@
             }
         }
 
-        @font-face {
-            font-family: 'Exo 2.0 Extra Bold Italic';
-            src: url('./fonts/Exo_2.0_Extra_Bold_Italic.ttf');
-        }
+@font-face {
+    font-family: 'Kontrabanda';
+    src: url('./fonts/ofont.ru_Kontrabanda.ttf') format('truetype');
+}
         .text_effect {
             font-family: 'Exo 2.0 Extra Bold Italic';
             color: rgb(247, 247, 247);
@@ -252,19 +252,19 @@
         }
         
         .anniversary-text {
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            text-align: center;
-            font-family: 'Dancing Script', cursive;
-            font-size: 3rem;
-            color: #ffffff;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, #ae11cb, #4b6289);
-            padding: 4px;
-            border-radius: 10px;
-            margin: 0 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+       position: absolute;
+    bottom: 20px;
+    left: 0;
+    text-align: center;
+    font-family: 'Bohema Pink', 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #ffffff;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #ae11cb, #4b6289);
+    padding: 4px;
+    border-radius: 10px;
+    margin: 0 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
         
         /* Модальное окно для увеличенного просмотра */
@@ -410,7 +410,7 @@
 			
 		    <div class="anniversary-frame" onclick="openModal('./img/0day.jpg', 'первый день')">
                 <img src="./img/0day.jpg" alt="11 дней" class="anniversary-photo">
-                <div class="anniversary-text"></div>
+                <div class="anniversary-text">первый день</div>
             </div>
 			
             <div class="anniversary-frame" onclick="openModal('./img/10day.jpg', '10 дней')">
