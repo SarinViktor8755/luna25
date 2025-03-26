@@ -91,10 +91,11 @@
             }
         }
 
-@font-face {
-    font-family: 'Kontrabanda';
-    src: url('./fonts/ofont.ru_Kontrabanda.ttf') format('truetype');
-}
+        @font-face {
+            font-family: 'Kontrabanda';
+            src: url('./fonts/ofont.ru_Kontrabanda.ttf') format('truetype');
+        }
+        
         .text_effect {
             font-family: 'Exo 2.0 Extra Bold Italic';
             color: rgb(247, 247, 247);
@@ -221,7 +222,7 @@
             justify-content: center;
             width: 100%;
             gap: 20px;
-            margin: 40px 0;
+            margin: 20px 0;
         }
         
         .anniversary-frame {
@@ -251,21 +252,21 @@
             object-position: center;
         }
         
-.anniversary-text {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    text-align: center;
-    font-family: 'Kontrabanda', 'Dancing Script', cursive;
-    font-size: 3rem;
-    color: #ffffff;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, #ae11cb, #4b6289);
-    padding: 4px;
-    border-radius: 10px;
-    margin: 0 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
+        .anniversary-text {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            text-align: center;
+            font-family: 'Kontrabanda', 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #ffffff;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #ae11cb, #4b6289);
+            padding: 4px;
+            border-radius: 10px;
+            margin: 0 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
         
         /* Модальное окно для увеличенного просмотра */
         .modal-overlay {
@@ -293,7 +294,7 @@
             max-width: 90%;
             max-height: 90%;
             position: relative;
-			background-color: #303030;
+            background-color: #303030;
         }
         
         .modal-content img {
@@ -327,6 +328,44 @@
             }
         }
         
+        /* Стили для разделителя */
+        .section-divider {
+            width: 100%;
+            text-align: center;
+            margin: 40px 0 20px;
+            position: relative;
+        }
+        
+        .section-divider::before,
+        .section-divider::after {
+            content: "";
+            display: inline-block;
+            width: 30%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffcc00, transparent);
+            position: absolute;
+            top: 50%;
+        }
+        
+        .section-divider::before {
+            left: 0;
+        }
+        
+        .section-divider::after {
+            right: 0;
+        }
+        
+        .section-title {
+            display: inline-block;
+            padding: 0 20px;
+            background-color: #013d42;
+            position: relative;
+            z-index: 1;
+            color: #ffcc00;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+        }
+        
         /* Адаптация для мобильных устройств */
         @media (max-width: 768px) {
             .anniversary-frame {
@@ -344,9 +383,13 @@
                 font-size: 2.5em;
             }
             
-            .anniversary-row {
-                flex-direction: column;
-                align-items: center;
+            .section-divider::before,
+            .section-divider::after {
+                width: 20%;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -393,26 +436,27 @@
             </div>
         </div>
         
-        <!-- Добавленная строка с фотографиями в 2 ряда -->
+        <!-- Раздел "Первые дни" -->
+        <div class="section-divider">
+            <div class="section-title">Первые дни</div>
+        </div>
+        
         <div class="anniversary-row">
-		
-		
-				    <div class="anniversary-frame" onclick="openModal('./img/minus2.jpg', 'УЗИ')">
-                <img src="./img/minus2.jpg" alt="11 дней" class="anniversary-photo">
+            <div class="anniversary-frame" onclick="openModal('./img/minus2.jpg', 'УЗИ')">
+                <img src="./img/minus2.jpg" alt="УЗИ" class="anniversary-photo">
                 <div class="anniversary-text">УЗИ</div>
             </div>
-			
-			
-					    <div class="anniversary-frame" onclick="openModal('./img/minus1.jpg', 'УЗИ')">
-                <img src="./img/minus1.jpg" alt="11 дней" class="anniversary-photo">
+            
+            <div class="anniversary-frame" onclick="openModal('./img/minus1.jpg', 'УЗИ')">
+                <img src="./img/minus1.jpg" alt="УЗИ" class="anniversary-photo">
                 <div class="anniversary-text">УЗИ</div>
             </div>
-			
-		    <div class="anniversary-frame" onclick="openModal('./img/0day.jpg', 'первый день')">
-                <img src="./img/0day.jpg" alt="11 дней" class="anniversary-photo">
-                <div class="anniversary-text">первый день</div>
+            
+            <div class="anniversary-frame" onclick="openModal('./img/0day.jpg', 'Первый день')">
+                <img src="./img/0day.jpg" alt="Первый день" class="anniversary-photo">
+                <div class="anniversary-text">Первый день</div>
             </div>
-			
+            
             <div class="anniversary-frame" onclick="openModal('./img/10day.jpg', '10 дней')">
                 <img src="./img/10day.jpg" alt="10 дней" class="anniversary-photo">
                 <div class="anniversary-text">10 дней</div>
@@ -421,6 +465,67 @@
             <div class="anniversary-frame" onclick="openModal('./img/11day.jpg', '11 дней')">
                 <img src="./img/11day.jpg" alt="11 дней" class="anniversary-photo">
                 <div class="anniversary-text">11 дней</div>
+            </div>
+        </div>
+        
+        <!-- Раздел "Семья" -->
+        <div class="section-divider">
+            <div class="section-title">Семья</div>
+        </div>
+        
+        <div class="anniversary-row">
+            <div class="anniversary-frame" onclick="openModal('./img/family1.jpg', 'С мамой')">
+                <img src="./img/family1.jpg" alt="С мамой" class="anniversary-photo">
+                <div class="anniversary-text">С мамой</div>
+            </div>
+            
+            <div class="anniversary-frame" onclick="openModal('./img/family2.jpg', 'С папой')">
+                <img src="./img/family2.jpg" alt="С папой" class="anniversary-photo">
+                <div class="anniversary-text">С папой</div>
+            </div>
+            
+            <div class="anniversary-frame" onclick="openModal('./img/family3.jpg', 'С бабушкой')">
+                <img src="./img/family3.jpg" alt="С бабушкой" class="anniversary-photo">
+                <div class="anniversary-text">С бабушкой</div>
+            </div>
+        </div>
+        
+        <!-- Раздел "Праздники" -->
+        <div class="section-divider">
+            <div class="section-title">Праздники</div>
+        </div>
+        
+        <div class="anniversary-row">
+            <div class="anniversary-frame" onclick="openModal('./img/holiday1.jpg', 'Новый год')">
+                <img src="./img/holiday1.jpg" alt="Новый год" class="anniversary-photo">
+                <div class="anniversary-text">Новый год</div>
+            </div>
+            
+            <div class="anniversary-frame" onclick="openModal('./img/holiday2.jpg', 'День рождения')">
+                <img src="./img/holiday2.jpg" alt="День рождения" class="anniversary-photo">
+                <div class="anniversary-text">День рождения</div>
+            </div>
+        </div>
+        
+        <!-- Раздел "Достижения" -->
+        <div class="section-divider">
+            <div class="section-title">Достижения</div>
+        </div>
+        
+        <div class="anniversary-row">
+            <div class="anniversary-frame" onclick="openModal('./img/milestone1.jpg', 'Первые шаги')">
+                <img src="./img/milestone1.jpg" alt="Первые шаги" class="anniversary-photo">
+                <div class="anniversary-text">Первые шаги</div>
+            </div>
+            
+            <div class="anniversary-frame" onclick="openModal('./img/milestone2.jpg', 'Первое слово')">
+                <img src="./img/milestone2.jpg" alt="Первое слово" class="anniversary-photo">
+                <div class="anniversary-text">Первое слово</div>
+            </div>
+            
+            <div class="anniversary-frame" onclick="openModal('./img/milestone3.jpg', 'Первый зуб')">
+                <img src="./img/milestone3.jpg" alt="Первый зуб" class="anniversary-photo">
+                <div class="anniversary-text">Первый зуб</div>
             </div>
         </div>
     </div>
@@ -438,6 +543,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <!-- Ваши скрипты -->
     <script>
         window.onload = updateInfo;
@@ -522,7 +628,7 @@
 
         // Начинаем анимацию после загрузки страницы
         window.addEventListener('load', () => {
-            setTimeout(startHeartAnimation, 100);
+            setTimeout(startHeartAnimation, 0);
             animateNameLetters();
         });
 
