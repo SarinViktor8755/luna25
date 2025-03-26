@@ -9,7 +9,6 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Ваши стили -->
     <style>
         body {
             font-family: 'Montserrat', Arial, sans-serif;
@@ -99,8 +98,8 @@
         .text_effect {
             font-family: 'Exo 2.0 Extra Bold Italic';
             color: rgb(247, 247, 247);
-               font-size: 7.5vw;
-    white-space: nowrap;
+            font-size: 7.5vw;
+            white-space: nowrap;
             text-shadow: rgb(3, 3, 3) 4px 4px 4px;
         }
 
@@ -251,6 +250,12 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .anniversary-photo.loaded {
+            opacity: 1;
         }
         
         .anniversary-text {
@@ -393,6 +398,20 @@
                 font-size: 1.5rem;
             }
         }
+        
+        /* Placeholder для изображений */
+        .placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #013d42 25%, #025a63 50%, #013d42 75%);
+            background-size: 200% 200%;
+            animation: placeholderShimmer 2s infinite;
+        }
+        
+        @keyframes placeholderShimmer {
+            0% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
     </style>
 </head>
 <body>
@@ -402,12 +421,12 @@
         <div class="info">
             <div class="slideshow-container">
                 <div class="slideshow" id="slideshow">
-                    <img src="./img/1.jpg" class="active">
-                    <img src="./img/5.jpg" class="">
-                    <img src="./img/3.jpg" class="">
-                    <img src="./img/2.jpg" class="">
-                    <img src="./img/4.jpg" class="">
-                    <img src="./img/6.jpg" class="">
+                    <img src="./img/1.jpg" class="active" loading="lazy">
+                    <img src="./img/5.jpg" loading="lazy">
+                    <img src="./img/3.jpg" loading="lazy">
+                    <img src="./img/2.jpg" loading="lazy">
+                    <img src="./img/4.jpg" loading="lazy">
+                    <img src="./img/6.jpg" loading="lazy">
                 </div>
             </div>
             <p id="age"><span class="emoji">👶</span> Возраст ребенка: <span class="highlight"><br>0 лет, 0 месяцев, 0 дней</span><br></p>
@@ -443,58 +462,54 @@
         </div>
         
         <div class="anniversary-row">
-		
-		
-		            <div class="anniversary-frame" onclick="openModal('./img/minus2.jpg', 'УЗИ')">
-                <img src="./img/ezgif-815fda565eec18.gif" alt="УЗИ" class="anniversary-photo">
+            <div class="anniversary-frame" onclick="openModal('./img/minus2.jpg', 'УЗИ')">
+                <img data-src="./img/ezgif-815fda565eec18.gif" alt="УЗИ" class="anniversary-photo" loading="lazy">
+                <div class="placeholder"></div>
                 <div class="anniversary-text">УЗИ</div>
             </div> 
-			
-
-			
-			
-			          
+            
             <div class="anniversary-frame" onclick="openModal('./img/minus1.jpg', 'УЗИ')">
-                <img src="./img/minus1.jpg" alt="УЗИ" class="anniversary-photo">
+                <img data-src="./img/minus1.jpg" alt="УЗИ" class="anniversary-photo" loading="lazy">
+                <div class="placeholder"></div>
                 <div class="anniversary-text">УЗИ</div>
             </div>
-			
-
-			
-			
-			        <!-- Раздел "Первые дни" -->
-        <div class="section-divider">
-            <div class="section-title">Глава - 1 </div>
         </div>
-			
-  
-            
+        
+        <!-- Раздел "Глава - 1" -->
+        <div class="section-divider">
+            <div class="section-title">Глава - 1</div>
+        </div>
+        
+        <div class="anniversary-row">
             <div class="anniversary-frame" onclick="openModal('./img/0day.jpg', 'Первый день(Матрешка)')">
-                <img src="./img/0day.jpg" alt="Первый день(Матрешка)" class="anniversary-photo">
+                <img data-src="./img/0day.jpg" alt="Первый день" class="anniversary-photo" loading="lazy">
+                <div class="placeholder"></div>
                 <div class="anniversary-text">Первый день</div>
             </div>
             
             <div class="anniversary-frame" onclick="openModal('./img/10day.jpg', '10 дней')">
-                <img src="./img/10day.jpg" alt="10 дней" class="anniversary-photo">
+                <img data-src="./img/10day.jpg" alt="10 дней" class="anniversary-photo" loading="lazy">
+                <div class="placeholder"></div>
                 <div class="anniversary-text">10 дней</div>
             </div>
             
             <div class="anniversary-frame" onclick="openModal('./img/11day.jpg', '11 дней')">
-                <img src="./img/11day.jpg" alt="11 дней" class="anniversary-photo">
+                <img data-src="./img/11day.jpg" alt="11 дней" class="anniversary-photo" loading="lazy">
+                <div class="placeholder"></div>
                 <div class="anniversary-text">11 дней</div>
             </div>
-			
-			 <div class="anniversary-frame" onclick="openModal('./img/12day.jpg', '12 дней')">
-                <img src="./img/12day.jpg" alt="11 дней" class="anniversary-photo">
+            
+            <div class="anniversary-frame" onclick="openModal('./img/12day.jpg', '12 дней')">
+                <img data-src="./img/12day.jpg" alt="12 дней" class="anniversary-photo" loading="lazy">
+                <div class="placeholder"></div>
                 <div class="anniversary-text">12 дней</div>
             </div>
-			
-						 <div class="anniversary-frame" onclick="openModal('./img/photo_2025-03-26_15-39-24.jpg', 'На работе')">
-                <img src="./img/photo_2025-03-26_15-39-24.jpg" alt="11 дней" class="anniversary-photo">
+            
+            <div class="anniversary-frame" onclick="openModal('./img/photo_2025-03-26_15-39-24.jpg', 'На работе')">
+                <img data-src="./img/photo_2025-03-26_15-39-24.jpg" alt="На работе" class="anniversary-photo" loading="lazy">
+                <div class="placeholder"></div>
                 <div class="anniversary-text">На работе</div>
             </div>
-       
-	
         </div>
     </div>
 
@@ -512,10 +527,16 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
-    <!-- Ваши скрипты -->
     <script>
-        window.onload = updateInfo;
-        
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            updateInfo();
+            animateNameLetters();
+            startHeartAnimation();
+            initSlideshow();
+            lazyLoadImages();
+        });
+
         // Функции для модального окна
         function openModal(imgSrc, text) {
             const modal = document.getElementById('modalOverlay');
@@ -547,36 +568,28 @@
             heart.innerHTML = '❤️';
             heart.classList.add('heart-bubble');
             
-            // Разные цвета сердечек
             const colors = ['#ff6699', '#ff3366', '#ff0066', '#ff99cc', '#ff66b3'];
             const randomColor = colors[Math.floor(Math.random() * colors.length)];
             heart.style.color = randomColor;
             
-            // Случайная позиция по горизонтали
             const x = Math.random() * window.innerWidth;
             heart.style.left = `${x}px`;
             heart.style.bottom = '0';
             
-            // Случайный размер
             const size = Math.random() * 20 + 25;
             heart.style.fontSize = `${size}px`;
             
             document.body.appendChild(heart);
             
-            // Удаляем сердечко после завершения анимации
             setTimeout(() => {
                 heart.remove();
             }, 5000);
         }
 
-        // Запускаем создание сердечек с разной периодичностью
+        // Запускаем создание сердечек
         function startHeartAnimation() {
-            // Первое сердечко сразу
             createHeart();
-            
-            // Случайный интервал для следующего сердечка (от 0.5 до 2 секунд)
             const nextInterval = Math.random() * 350 + 50;
-            
             setTimeout(startHeartAnimation, nextInterval);
         }
 
@@ -594,37 +607,76 @@
             });
         }
 
-        // Начинаем анимацию после загрузки страницы
-        window.addEventListener('load', () => {
-            setTimeout(startHeartAnimation, 0);
-            animateNameLetters();
-        });
-
         // Слайд-шоу
-        const slideshow = document.getElementById('slideshow');
-        const images = [
-            'img/1.jpg',
-            'img/6.jpg',
-            'img/5.jpg',
-            'img/3.jpg',
-            'img/2.jpg',
-            'img/4.jpg'
-        ];
+        function initSlideshow() {
+            const slideshow = document.getElementById('slideshow');
+            let currentIndex = 0;
 
-        let currentIndex = 0;
+            function showNextImage() {
+                const currentImage = slideshow.querySelector('.active');
+                if (currentImage) {
+                    currentImage.classList.remove('active');
+                }
 
-        function showNextImage() {
-            const currentImage = slideshow.querySelector('.active');
-            currentImage.classList.remove('active');
+                currentIndex = (currentIndex + 1) % slideshow.children.length;
+                const nextImage = slideshow.children[currentIndex];
+                nextImage.classList.add('active');
+            }
 
-            currentIndex = (currentIndex + 1) % images.length;
-            const nextImage = slideshow.children[currentIndex];
-            nextImage.classList.add('active');
+            setInterval(showNextImage, 3000);
         }
 
-        setInterval(showNextImage, 3000);
+        // Ленивая загрузка изображений
+        function lazyLoadImages() {
+            const lazyImages = [].slice.call(document.querySelectorAll('img[loading="lazy"], img[data-src]'));
+            
+            if ('IntersectionObserver' in window) {
+                const lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            const lazyImage = entry.target;
+                            
+                            // Загружаем изображение
+                            if (lazyImage.dataset.src) {
+                                lazyImage.src = lazyImage.dataset.src;
+                                delete lazyImage.dataset.src;
+                            }
+                            
+                            // Удаляем placeholder
+                            const placeholder = lazyImage.nextElementSibling;
+                            if (placeholder && placeholder.classList.contains('placeholder')) {
+                                placeholder.remove();
+                            }
+                            
+                            // Добавляем класс loaded для плавного появления
+                            lazyImage.onload = function() {
+                                lazyImage.classList.add('loaded');
+                            };
+                            
+                            lazyImageObserver.unobserve(lazyImage);
+                        }
+                    });
+                }, {
+                    rootMargin: '200px 0px'
+                });
 
-        // Остальной код для расчета возраста и прогресс-баров
+                lazyImages.forEach(function(lazyImage) {
+                    lazyImageObserver.observe(lazyImage);
+                });
+            } else {
+                // Fallback для браузеров без поддержки IntersectionObserver
+                lazyImages.forEach(function(lazyImage) {
+                    if (lazyImage.dataset.src) {
+                        lazyImage.src = lazyImage.dataset.src;
+                        lazyImage.onload = function() {
+                            lazyImage.classList.add('loaded');
+                        };
+                    }
+                });
+            }
+        }
+
+        // Расчет возраста и прогресс-баров
         const birthDate = new Date('2025-03-14T10:15:00');
 
         function calculateAge(birthDate) {
@@ -635,6 +687,11 @@
             let hours = now.getHours() - birthDate.getHours();
             let minutes = now.getMinutes() - birthDate.getMinutes();
             let seconds = now.getSeconds() - birthDate.getSeconds();
+            
+            if (seconds < 0) {
+                minutes--;
+                seconds += 60;
+            }
             if (minutes < 0) {
                 hours--;
                 minutes += 60;
@@ -651,15 +708,17 @@
                 years--;
                 months += 12;
             }
+            
             return { years, months, days, hours, minutes, seconds };
         }
 
         function updateInfo() {
             const age = calculateAge(birthDate);
             document.getElementById('age').innerHTML = `<span class="emoji">👶</span> Возраст ребенка: <span class="highlight"><br>${age.years} лет, ${age.months} месяцев, ${age.days} дней</span><br>${age.hours} часов, ${age.minutes} минут, ${age.seconds} сек`;
+            
+            // Обновляем каждую секунду
+            setTimeout(updateInfo, 1000);
         }
-
-        setInterval(updateInfo, 3000);
     </script>
 </body>
 </html>
