@@ -397,9 +397,9 @@
         <div class="anniversary-row">
 		
 		
-				    <div class="anniversary-frame" onclick="openModal('./img/minus2.jpg', '')">
+				    <div class="anniversary-frame" onclick="openModal('./img/minus2.jpg', 'УЗИ')">
                 <img src="./img/minus2.jpg" alt="11 дней" class="anniversary-photo">
-                <div class="anniversary-text"></div>
+                <div class="anniversary-text">УЗИ</div>
             </div>
 			
 			
