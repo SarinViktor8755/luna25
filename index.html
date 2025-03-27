@@ -22,6 +22,10 @@
             overflow-x: hidden;
         }
 
+		html {
+  scroll-behavior: smooth;
+}
+
         .unselectable {
             -webkit-touch-callout: none;
             -webkit-user-select: none;
@@ -30,6 +34,10 @@
             -ms-user-select: none;
             user-select: none;
         }
+		
+		:target {
+    scroll-margin-top: 70px; /* Высота вашего меню */
+}
 
         .container {
             max-width: 900px;
@@ -717,6 +725,16 @@
                 });
             }
         }
+		
+		// Закрытие меню при клике на пункт (для мобильных)
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        const navbar = document.getElementById('navbarText');
+        if (navbar.classList.contains('show')) {
+            $('.navbar-toggler').click(); // Закрываем меню
+        }
+    });
+});
 
         // Расчет возраста и прогресс-баров
         const birthDate = new Date('2025-03-14T10:15:00');
