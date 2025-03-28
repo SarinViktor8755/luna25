@@ -52,7 +52,7 @@
         }
         
         :target {
-            scroll-margin-top: 70px;
+            scroll-margin-top: 200px;
         }
 
         /* Навигация */
@@ -413,8 +413,14 @@
             border-radius: 10px;
             margin: 0 30px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            opacity: 1;
+            transform: translateY(20px);
+            opacity: 0;
             transition: all 0.5s ease;
+        }
+        
+        .anniversary-frame:hover .anniversary-text {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         /* Модальное окно */
@@ -1007,17 +1013,7 @@
             createFloatingElements();
             setupScrollListener();
             setupNavbarScroll();
-            showAllTexts(); // Добавляем вызов функции для показа всех текстов
         });
-
-        // Показать все тексты под фотографиями
-        function showAllTexts() {
-            const texts = document.querySelectorAll('.anniversary-text');
-            texts.forEach(text => {
-                text.style.opacity = '1';
-                text.style.transform = 'translateY(0)';
-            });
-        }
 
         // Функции для модального окна
         function openModal(imgSrc, text) {
@@ -1170,7 +1166,7 @@
             setInterval(showNextImage, 3000);
         }
 
-        // Ленивая загрузка изображений с анимацией появления
+        // Ленивая загрузка изображений
         function lazyLoadImages() {
             const lazyImages = [].slice.call(document.querySelectorAll('img[loading="lazy"], img[data-src]'));
             
