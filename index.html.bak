@@ -22,6 +22,10 @@
             overflow-x: hidden;
         }
 
+		html {
+  scroll-behavior: smooth;
+}
+
         .unselectable {
             -webkit-touch-callout: none;
             -webkit-user-select: none;
@@ -30,6 +34,10 @@
             -ms-user-select: none;
             user-select: none;
         }
+		
+		:target {
+    scroll-margin-top: 70px; /* Высота вашего меню */
+}
 
         .container {
             max-width: 900px;
@@ -415,6 +423,25 @@
     </style>
 </head>
 <body>
+<nav class="navbar navbar-light fixed-top" style="background-color: #256f75; color: white; justify-content: center;">
+  <a class="navbar-brand" href="#" style="color: white;">Оглавление</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto" style="color: white;">
+      <li class="nav-item active">
+        <a class="nav-link" href="#age" style="color: white;">Возраст <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#perv" style="color: white;">Предыстория </span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#gl1" style="color: white;">Глава 1</a>
+      </li>
+    </ul>
+  </div>
+</nav>
     <div class="container unselectable">
         <h1 id="name-title" class="text_effect">🎉<span id="name-letters"></span>🎉</h1>
         
@@ -458,7 +485,7 @@
         
         <!-- Раздел "Первые дни" -->
         <div class="section-divider">
-            <div class="section-title">Предыстория</div>
+            <div class="section-title" id="perv">Предыстория</div>
         </div>
         
         <div class="anniversary-row">
@@ -483,7 +510,7 @@
         
         <!-- Раздел "Глава - 1" -->
         <div class="section-divider">
-            <div class="section-title">Глава - 1</div>
+            <div class="section-title" id="gl1">Глава - 1</div>
         </div>
         
         <div class="anniversary-row">
@@ -523,10 +550,10 @@
                 <div class="anniversary-text">На работе</div>
             </div>
 			
-			<div class="anniversary-frame" onclick="openModal('./img/12day.jpg', '12 дней')">
-                <img data-src="./img/12day.jpg" alt="12 дней" class="anniversary-photo" loading="lazy">
+			<div class="anniversary-frame" onclick="openModal('./img/photo_2025-03-27_15-35-02.jpg', '12 дней')">
+                <img data-src="./img/photo_2025-03-27_15-35-02.jpg" alt="13 дней" class="anniversary-photo" loading="lazy">
                 <div class="placeholder"></div>
-                <div class="anniversary-text">12 дней</div>
+                <div class="anniversary-text">13 дней</div>
             </div>
         </div>
     </div>
@@ -694,6 +721,16 @@
                 });
             }
         }
+		
+		// Закрытие меню при клике на пункт (для мобильных)
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        const navbar = document.getElementById('navbarText');
+        if (navbar.classList.contains('show')) {
+            $('.navbar-toggler').click(); // Закрываем меню
+        }
+    });
+});
 
         // Расчет возраста и прогресс-баров
         const birthDate = new Date('2025-03-14T10:15:00');
