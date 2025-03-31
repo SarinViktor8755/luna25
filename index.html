@@ -780,7 +780,14 @@
     background: linear-gradient(135deg, #2E7D32, #4CAF50); /* Темно-зеленый */
 }
 
+.container-fluid {
+    transition: opacity 0.3s ease;
+}
 
+.modal-overlay.active ~ .container-fluid {
+    opacity: 0;
+    pointer-events: none;
+}
 
         /* Специальные эффекты */
         .confetti {
@@ -849,6 +856,18 @@
             transform: translateY(-5px);
             background: var(--secondary-color);
         }
+		
+		
+		.navbar {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.modal-overlay.active ~ .navbar,
+.modal-overlay.active + .navbar {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateY(-20px);
+}
 		
 		
     </style>
@@ -1100,25 +1119,38 @@
         }
 
         // Функции для модального окна
-        function openModal(imgSrc, text) {
-            const modal = document.getElementById('modalOverlay');
-            const modalImg = document.getElementById('modalImage');
-            const modalText = document.getElementById('modalText');
-            
-            modalImg.src = imgSrc;
-            modalText.textContent = text;
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            
-            // Создаем конфетти для праздничного эффекта
-            createConfetti();
-        }
-        
-        function closeModal() {
-            const modal = document.getElementById('modalOverlay');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
+   // В функции openModal
+function openModal(imgSrc, text) {
+    const modal = document.getElementById('modalOverlay');
+    const modalImg = document.getElementById('modalImage');
+    const modalText = document.getElementById('modalText');
+    const navbar = document.querySelector('.navbar'); // Находим навбар
+    
+    modalImg.src = imgSrc;
+    modalText.textContent = text;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Скрываем навбар
+    navbar.style.opacity = '0';
+    navbar.style.pointerEvents = 'none';
+    navbar.style.transition = 'opacity 0.3s ease';
+    
+    createConfetti();
+}
+
+// В функции closeModal
+function closeModal() {
+    const modal = document.getElementById('modalOverlay');
+    const navbar = document.querySelector('.navbar');
+    
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    
+    // Показываем навбар обратно
+    navbar.style.opacity = '1';
+    navbar.style.pointerEvents = 'auto';
+}
         
         // Закрытие модального окна при нажатии ESC
         document.addEventListener('keydown', function(event) {
