@@ -27,34 +27,48 @@ function openModal(imgSrc, text) {
     const modal = document.getElementById('modalOverlay');
     const modalImg = document.getElementById('modalImage');
     const modalText = document.getElementById('modalText');
-    const navbar = document.querySelector('.navbar'); // Находим навбар
+    const navbar = document.querySelector('.navbar');
     
     modalImg.src = imgSrc;
     modalText.textContent = text;
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     
-    // Скрываем навбар
     navbar.style.opacity = '0';
     navbar.style.pointerEvents = 'none';
     navbar.style.transition = 'opacity 0.3s ease';
     
+    // Добавляем обработчик клика на само изображение
+    modalImg.onclick = function(e) {
+        e.stopPropagation(); // Предотвращаем всплытие, чтобы клик на фото не закрывал окно
+        closeModal();
+    };
+    
     createConfetti();
 }
 
-// В функции closeModal
+// Модифицируем обработчик модального окна
+document.getElementById('modalOverlay').onclick = function(e) {
+    // Закрываем только если клик не на содержимом модалки
+    if (e.target === this) {
+        closeModal();
+    }
+};
+// Измененная функция closeModal
 function closeModal() {
     const modal = document.getElementById('modalOverlay');
     const navbar = document.querySelector('.navbar');
     
     modal.classList.remove('active');
     document.body.style.overflow = 'auto';
-    
-    // Показываем навбар обратно
     navbar.style.opacity = '1';
     navbar.style.pointerEvents = 'auto';
+    
+    // Удаляем обработчик, чтобы не накапливались
+    const modalImg = document.getElementById('modalImage');
+    modalImg.onclick = null;
 }
-        
+
         // Закрытие модального окна при нажатии ESC
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {

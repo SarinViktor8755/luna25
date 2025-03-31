@@ -846,6 +846,27 @@
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+
+.modal-content img {
+    cursor: pointer; /* Меняем курсор на "кликабельный" при наведении на фото */
+    transition: transform 0.3s ease;
+}
+
+.modal-content img:hover {
+    transform: scale(0.98); /* Легкий эффект нажатия */
+}
+
+.close-modal {
+    z-index: 3; /* Поднимаем крестик над фото */
+    background: rgba(0, 0, 0, 0.7);
+    transition: all 0.3s ease;
+}
+
+.close-modal:hover {
+    transform: rotate(90deg) scale(1.1);
+    background: rgba(255, 0, 0, 0.7);
+}
+
 .modal-overlay.active ~ .navbar,
 .modal-overlay.active + .navbar {
     opacity: 0 !important;
