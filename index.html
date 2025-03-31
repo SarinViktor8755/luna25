@@ -739,6 +739,46 @@
                 font-size: 1.5rem;
             }
         }
+		
+		
+		
+/* Стили для зеленого трек-бара */
+::-webkit-scrollbar {
+    width: 10px; /* Тонкий скроллбар */
+    height: 10px;
+}
+
+/* Фоновая дорожка */
+::-webkit-scrollbar-track {
+    background: rgba(2, 90, 99, 0.2); /* Полупрозрачный темно-зеленый */
+    border-radius: 10px;
+    margin: 5px 0;
+}
+
+/* Ползунок */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #4CAF50, #8BC34A); /* Зеленый градиент */
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* Ползунок при наведении */
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #8BC34A, #4CAF50); /* Инвертированный градиент */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Для Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #4CAF50 rgba(2, 90, 99, 0.2);
+}
+
+/* Анимация при активном скролле */
+::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(135deg, #2E7D32, #4CAF50); /* Темно-зеленый */
+}
 
         /* Специальные эффекты */
         .confetti {
