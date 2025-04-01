@@ -81,7 +81,7 @@ function closeModal() {
             const container = document.querySelector('.floating-elements');
             const colors = ['rgba(255, 204, 0, 0.1)', 'rgba(255, 102, 153, 0.1)', 'rgba(174, 17, 203, 0.1)', 'rgba(75, 98, 137, 0.1)'];
             
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 8; i++) {
                 const element = document.createElement('div');
                 element.className = 'floating-element';
                 
@@ -111,7 +111,7 @@ function closeModal() {
             heart.innerHTML = heartTypes[Math.floor(Math.random() * heartTypes.length)];
             heart.classList.add('heart-bubble');
             
-            const colors = ['#ff6699', '#ff3366', '#ff0066', '#ff99cc', '#ff66b3', '#ffcc00', '#ff9933' ];
+            const colors = ['#ff6699', '#ff3366', '#ff0066', '#ff99cc', '#ff66b3', '#ffcc00', '#ff9933'];
             const randomColor = colors[Math.floor(Math.random() * colors.length)];
             heart.style.color = randomColor;
             
@@ -119,7 +119,7 @@ function closeModal() {
             heart.style.left = `${x}px`;
             heart.style.bottom = '0';
             
-            const size = Math.random() * 20 + 80;
+            const size = Math.random() * 20 + 40;
             heart.style.fontSize = `${size}px`;
             
             // Анимация горизонтального движения
