@@ -25,6 +25,14 @@
         html {
             scroll-behavior: smooth;
         }
+		
+		@font-face {
+    font-family: 'Ustroke';
+    src: url('./fonts/Ustroke.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Для оптимизации загрузки */
+}
 
         .unselectable {
             -webkit-touch-callout: none;
@@ -128,6 +136,7 @@
 
         /* Заголовки */
         h1 {
+			font-family: 'Ustroke', sans-serif !important;
             padding: 50px 0;
             text-align: center;
             color: var(--text-color);
@@ -383,6 +392,7 @@
         }
         
         .anniversary-text {
+			font-family: 'Ustroke', sans-serif !important;
             position: absolute;
             bottom: 20px;
             left: 0;
