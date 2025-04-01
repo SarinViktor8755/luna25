@@ -27,11 +27,13 @@
         }
 		
 		@font-face {
-    font-family: 'Ustroke';
-    src: url('./fonts/Ustroke.ttf') format('truetype');
+    font-family: 'Binks';
+    src: url('./fonts/Okeanos.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap; /* Для оптимизации загрузки */
+	
+
 }
 
         .unselectable {
@@ -392,7 +394,7 @@
         }
         
         .anniversary-text {
-			font-family: 'Ustroke', sans-serif !important;
+			font-family: 'Binks', sans-serif !important;
             position: absolute;
             bottom: 20px;
             left: 0;
@@ -480,6 +482,8 @@
         }
         
         .modal-text {
+			font-family: 'Binks', sans-serif !important;
+			
             position: absolute;
             bottom: 0;
             left: 0;
@@ -487,7 +491,7 @@
             padding: 20px;
             background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
             color: white;
-            font-size: 1.5rem;
+            font-size: 3.5rem;
             text-align: center;
             font-family: 'Dancing Script', cursive;
         }
