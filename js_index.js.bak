@@ -135,7 +135,7 @@ function closeModal() {
         // Запускаем создание сердечек
         function startHeartAnimation() {
             createHeart();
-            const nextInterval = Math.random() * 300 + 100;
+            const nextInterval = Math.random() * 300 + 500;
             setTimeout(startHeartAnimation, nextInterval);
         }
 
@@ -235,7 +235,7 @@ function closeModal() {
                         }
                     });
                 }, {
-                    rootMargin: '200px 0px'
+                    rootMargin: '2500px 0px'
                 });
 
                 lazyImages.forEach(function(lazyImage) {
