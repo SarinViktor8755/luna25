@@ -1,0 +1,18 @@
+package main
+
+import (
+	"fmt"
+	"log"
+	"net/http"
+	"os"
+)
+
+func main() {
+	// Создаем необходимые папки
+	if err := createFolders(); err != nil {
+		log.Fatal(err)
+	}
+
+	// Настройка обработчиков
+	http.HandleFunc("/", serveHomePage)
+	http
