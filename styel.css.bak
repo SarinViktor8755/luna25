@@ -621,10 +621,10 @@
         /* Подвал */
         footer {
             width: 100%;
-            padding: 10px 0;
+            padding: 20px 0;
             text-align: center;
             background: rgba(0, 0, 0, 0.2);
-            margin-top: 0px;
+            margin-top: 50px;
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.7);
         }
