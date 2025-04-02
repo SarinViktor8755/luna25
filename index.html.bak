@@ -53,17 +53,20 @@
 
     <!-- Основной контент -->
     <div class="container unselectable">
-        <h1 id="name-title"><span id="name-letters"></span><span class="glow-text">✨</span></h1>
+        <h1 id="name-title"><span class="glow-text">✨</span><span id="name-letters"></span><span class="glow-text">✨</span></h1>
         
         <div class="info">
             <div class="slideshow-container">
                 <div class="slideshow" id="slideshow">
                     <img src="./img/1.jpg" class="active" loading="lazy">
                     <img src="./img/5.jpg" loading="lazy">
+					
                     <img src="./img/3.jpg" loading="lazy">
                     <img src="./img/2.jpg" loading="lazy">
                     <img src="./img/4.jpg" loading="lazy">
                     <img src="./img/6.jpg" loading="lazy">
+					<img src="./img/PXL_20250401_162439869.jpg" loading="lazy">
+					
                 </div>
             </div>         
             <p id="age"><span class="emoji">👶</span> Возраст ребенка: <span class="highlight"><br>0 лет, 0 месяцев, 0 дней</span><br></p>
@@ -214,7 +217,7 @@
 				</div>
 				
 				
-				<div class="anniversary-frame" onclick="openModal('./img/PXL_20250401_162439869.jpg', '18-эй ДЕНЬ')">
+				<div class="anniversary-frame" onclick="openModal('./img/PXL_20250401_162439869_1.jpg', '18-эй ДЕНЬ')">
                 <img data-src="./img/PXL_20250401_162439869.jpg" alt="Сплю" class="anniversary-photo" loading="lazy">
                      <div class="placeholder"></div>
                 <div class="anniversary-text">18</div>
