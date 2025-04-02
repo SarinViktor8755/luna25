@@ -404,7 +404,7 @@
         }
         
         .anniversary-text {
-			font-family: 'Binks', sans-serif !important;
+		
             position: absolute;
             bottom: 20px;
             left: 0;
