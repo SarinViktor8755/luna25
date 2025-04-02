@@ -10,6 +10,7 @@
             setupScrollListener();
             setupNavbarScroll();
             showAllTexts(); // Добавляем вызов функции для показа всех текстов
+			 createConfetti();
         });
 
         // Показать все тексты под фотографиями
