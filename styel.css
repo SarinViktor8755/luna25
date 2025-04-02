@@ -711,7 +711,7 @@
             }
             
             .anniversary-text {
-                font-size: 1.8rem;
+                font-size: 1.9em;
                 bottom: 15px;
                 padding: 8px 15px;
             }
@@ -724,7 +724,7 @@
 
         @media (max-width: 576px) {
             h1 {
-                font-size: 1.5em;
+                font-size: 1.9em;
             }
             
             .slideshow-container {
