@@ -25,6 +25,26 @@
         html {
             scroll-behavior: smooth;
         }
+		
+				@font-face {
+    font-family: 'Ustroke';
+    src: url('./fonts/Ustroke.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Для оптимизации загрузки */
+	
+
+}
+		
+		@font-face {
+    font-family: 'Binks';
+    src: url('./fonts/Okeanos.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Для оптимизации загрузки */
+	
+
+}
 
         .unselectable {
             -webkit-touch-callout: none;
@@ -128,6 +148,7 @@
 
         /* Заголовки */
         h1 {
+			font-family: 'Ustroke', sans-serif !important;
             padding: 50px 0;
             text-align: center;
             color: var(--text-color);
@@ -383,6 +404,7 @@
         }
         
         .anniversary-text {
+			font-family: 'Binks', sans-serif !important;
             position: absolute;
             bottom: 20px;
             left: 0;
@@ -470,6 +492,7 @@
         }
         
         .modal-text {
+			font-family: 'Binks', sans-serif !important;
             position: absolute;
             bottom: 0;
             left: 0;
@@ -477,7 +500,7 @@
             padding: 20px;
             background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
             color: white;
-            font-size: 1.5rem;
+            font-size: 3.5rem;
             text-align: center;
             font-family: 'Dancing Script', cursive;
         }
@@ -621,10 +644,10 @@
         /* Подвал */
         footer {
             width: 100%;
-            padding: 20px 0;
+            padding: 10px 0;
             text-align: center;
             background: rgba(0, 0, 0, 0.2);
-            margin-top: 50px;
+            margin-top: 0px;
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.7);
         }
