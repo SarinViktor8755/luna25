@@ -156,6 +156,12 @@
             </div>
             
 			
+			<div class="anniversary-frame" onclick="openModal('./img/video_2025-04-03_13-24-48,gif', 'день первый')">
+                <img data-src="./img/video_2025-04-03_13-24-48,gif" alt="1 дней" class="anniversary-photo" loading="lazy">
+                <div class="placeholder"></div>
+                <div class="anniversary-text">1 день</div>
+            </div>
+			
 			
 			<div class="anniversary-frame" onclick="openModal('./img/4.jpg', '4 день')">
                 <img data-src="./img/4.jpg" alt="4 дней" class="anniversary-photo" loading="lazy">
@@ -255,8 +261,8 @@
 				</div>
 				
 				
-											<div class="anniversary-frame" onclick="openModal('./img/photo_2025-04-02_20-41-31.jpg', '20-ый ДЕНЬ')">
-                <img data-src="./img/photo_2025-04-02_20-41-31.jpg" alt="Сплю" class="anniversary-photo" loading="lazy">
+											<div class="anniversary-frame" onclick="openModal('./img/photo_2025-04-03_09-09-53.jpg', '20-ый ДЕНЬ')">
+                <img data-src="./img/photo_2025-04-03_09-09-53.jpg" alt="Сплю" class="anniversary-photo" loading="lazy">
                      <div class="placeholder"></div>
                 <div class="anniversary-text">20</div>
 				</div>
