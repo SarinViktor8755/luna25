@@ -132,7 +132,7 @@
 						<div class="anniversary-frame" onclick="openModal('./img/photo_2025-03-26_22-17-03.jpg', '10.03.25')">
                 <img data-src="./img/photo_2025-03-26_22-17-03.jpg" alt="УЗИ" class="anniversary-photo" loading="lazy">
                 <div class="placeholder"></div>
-                <div class="anniversary-text">10.03.25</div>
+                <div class="anniversary-text"> за 3 дня</div>
             </div> 
             
         </div>
@@ -253,7 +253,13 @@
                      <div class="placeholder"></div>
                 <div class="anniversary-text">19</div>
 				</div>
-			
+				
+				
+											<div class="anniversary-frame" onclick="openModal('./img/photo_2025-04-02_20-41-31.jpg', '20-ый ДЕНЬ')">
+                <img data-src="./img/photo_2025-04-02_20-41-31.jpg" alt="Сплю" class="anniversary-photo" loading="lazy">
+                     <div class="placeholder"></div>
+                <div class="anniversary-text">20</div>
+				</div>
 			
 			
             </div> 
