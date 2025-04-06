@@ -136,7 +136,7 @@ function closeModal() {
         // Запускаем создание сердечек
         function startHeartAnimation() {
             createHeart();
-            const nextInterval = Math.random() * 300 + 100;
+            const nextInterval = Math.random() * 500 + 500;
             setTimeout(startHeartAnimation, nextInterval);
         }
 
